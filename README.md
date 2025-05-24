@@ -1,4 +1,4 @@
-   <img width="400" src="https://github.com/user-attachments/assets/623483cc-034e-4982-9c39-401fb76680ae" alt="Wireshark logo"/>
+   <img width="800" src="https://github.com/user-attachments/assets/623483cc-034e-4982-9c39-401fb76680ae" alt="Wireshark logo"/>
 
 
 
@@ -10,7 +10,7 @@
 - Windows 10 Virtual Machines (Microsoft Azure)
 - EDR Platform: Microsoft Defender for Endpoint
 - Kusto Query Language (KQL)
-- Tor Browser
+- Wireshark 
 
 ##  Scenario
 
@@ -24,22 +24,30 @@ Management suspects that an insider or compromised user installed Wireshark to i
 ## Investigation Steps:
 
 ## 1.	Confirm Installation Source
-Determine if PowerShell, EXE, or portable version was used.
-Check hash against known software repositories
+
+- Determine if PowerShell, EXE, or portable version was used.
+
+- Check hash against known software repositories
 
 ## 2.	Identify Process Creation Events
-Search for execution of Wireshark or dumpcap.
-Review parent process tree (browser, installer, etc.).
+
+- Search for execution of Wireshark or dumpcap.
+
+- Review parent process tree (browser, installer, etc.).
 
 ## 3.	Check Network Traffic
-Look for outbound connections during capture window.
-DNS resolution of suspicious domains (file-sharing services).
+
+- Look for outbound connections during capture window.
+
+- DNS resolution of suspicious domains (file-sharing services).
 
 ## 4.	Privilege Escalation Check
-Was Wireshark installed by other bad actors? Yes
-Did the user run as an administrator? Yes
 
+- Was Wireshark installed by other bad actors? Yes
 
+- Did the user run as an administrator? Yes
+
+---
 
 
 
