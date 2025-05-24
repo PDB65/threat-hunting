@@ -160,12 +160,12 @@ DeviceProcessEvents
 
 - **Timestamp:** `2025-05-21T21:11:07.6958531Z`
 - **Event:** The user "Doreen" downloaded a file named `Wireshark-4.4.6-x64.exe` to the Downloads folder.
-- **Action:** File download detected.
+- **Action:** File download detected, deleted and reinstalled.
 - **File Path:** `C:\Users\Doreen\Downloads\Wireshark-4.4.6-x64.exe`
 
-### 2. Process Execution - TOR Browser Installation
+### 2. Process Execution - Wireshark Installation
 
-- **Timestamp:** `2025-05-21T21:11:07.6958531Z`
+- **Timestamp:** `2025-05-21T21:11:10.6958531Z`
 - **Event:** The user "Doreen" executed the file `Wireshark-4.4.6-x64.exe`,
 - **Copy the file to the installerPath** = “C:\Temp\Wireshark-4.4.6-x64.exe"
 -  **installation directory $installDir** = "C:\Program Files\Wireshark"
@@ -173,12 +173,12 @@ DeviceProcessEvents
 - **Silent Installer Command:** `Start-Process -FilePath $installerPath -ArgumentList $arguments -Wait -PassThru`
 `
 
-### 3. Process Execution - TOR Browser Launch
+### 3. Process Execution - Wireshark Launch
 
-- **Timestamp:** `2024-11-08T22:17:21.6357935Z`
-- **Event:** User "employee" opened the TOR browser. Subsequent processes associated with TOR browser, such as `firefox.exe` and `tor.exe`, were also created, indicating that the browser launched successfully.
-- **Action:** Process creation of TOR browser-related executables detected.
-- **File Path:** `C:\Users\employee\Desktop\Tor Browser\Browser\TorBrowser\Tor\tor.exe`
+- **Timestamp:** `2025-05-21T21:11:10.6958531`
+- **Event:** User "Doreen" launched Wireshark and installed additional components such as `npcap`. After installing the `npcap` components, the user chose to created a Wireshark shortcut on the Desktop. 
+- **Action:** Process creation of Wireshark executables detected.
+- **File Path:** `C:\Users\Dooreen\Desktop\Wireshark-4.4.6-x64.ex`
 
 ### 4. Network Connection - TOR Network
 
