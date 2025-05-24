@@ -139,7 +139,7 @@ DeviceNetworkEvents
 ```
 ![image](https://github.com/user-attachments/assets/b0472ad6-ac81-421d-8eed-424b2a4fd874)
 
-### Additional KQL query in the `DeviceNetworkEvents` Table to correlate PowerShell events and or suspicious Remote URL.
+#### Additional KQL query in the `DeviceNetworkEvents` Table to correlate PowerShell events and or suspicious Remote URL.
 
 ```kql
 
@@ -150,7 +150,9 @@ DeviceNetworkEvents
 | project Timestamp, DeviceName, RemoteUrl, InitiatingProcessFileName, RemotePort, Protocol
 
 ```
-![image](https://github.com/user-attachments/assets/dd4e71af-be80-4a66-b579-11414b5b56f8)
+
+![image](https://github.com/user-attachments/assets/38532668-19be-4a4a-a4bd-4d4db5d45296)
+
 
 
 ---
@@ -217,8 +219,8 @@ DeviceProcessEvents
 ### 5. Additional Network Connections - Wireshark
 
 - **Timestamps:** `2025-05-21T20:49:51.9749746Z` and `2025-05-21T21:04:21.3290732Z`
-  - `Connected to `as.dl.wireshark.org` on port `443`.
-  - `connection to `c.pki.goog` on port `80`.
+  - Connected to `as.dl.wireshark.org` on port `443`.
+  - Connection to `c.pki.goog` on port `80`.
 - **Event:** Additional network connections to Wireshark sites were established, indicating ongoing activity by user "Doreen".
 - **Action:** Multiple successful connections detected.
 
