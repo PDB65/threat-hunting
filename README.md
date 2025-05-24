@@ -19,7 +19,7 @@ Management suspects that an insider or compromised user installed Wireshark to i
 ### High-Level Wireshark-Related IoC Discovery Plan
 
 - **Check `DeviceFileEvents`** for any "Wireshark.exe" file events.
-- - **Check `DeviceFileEvents`** for any signs of installation or usage.
+- **Check `DeviceFileEvents`** for any signs of installation or usage.
 ---
 
 ## Investigation Steps:
@@ -65,13 +65,31 @@ DeviceFileEvents
 | order by Timestamp desc  
 | project Timestamp, DeviceName, ActionType, FileName, FolderPath, SHA256, Account = InitiatingProcessAccountName
 
-
 ```
 
 ![image](https://github.com/user-attachments/assets/a1b8d39e-81fb-458a-8aa5-c728a10dd892)
 
+---
+
+**Second query used to locate events:**
+
+After further investigation, it was discovered the user “Doreen” installed Wireshark additional components (npcap) for Wireshark on 5/21/2025.
+
+```kql
+DeviceFileEvents  
+| where DeviceName == "burwell-new-vm"  
+| where FileName contains "Npcap"
+| order by Timestamp desc  
+
+```
+![image](https://github.com/user-attachments/assets/d6ab6ddd-3ae8-4d04-b8c9-6373120ffefd)
 
 ---
+
+
+
+
+
 
 ### 2. Searched the `DeviceProcessEvents` Table
 
