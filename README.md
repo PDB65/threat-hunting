@@ -214,23 +214,23 @@ Confirmed the user "Doreen" on the endpoint "burwell-new-vm" device initiated an
 
 ## Response Action Taken
 
-The device was isolated.
-The software was blocked by EDR policy.
-Notified the user's manager
-Determine if Security Team requires credentials to be blocked pending further investigations.
+- The device was isolated.
+- The software was blocked by EDR policy.
+- Notified the user's manager
+- Determine if Security Team requires credentials to be blocked pending further investigations.
 
 ---
 ## Preventive & Detective Controls:
 
-VM baseline software inventory monitoring
-Restrict administrative privileges on VMs
-Alert on packet sniffing tool executions
+- VM baseline software inventory monitoring
+- Restrict administrative privileges on VMs
+- Alert on packet sniffing tool executions
 
 ---
 ## Documentation & Reporting:
 
-Record timeline of events
-User identity and privilege level
-Evidence collected (logs)
-Post-incident lessons learned
+- Record timeline of events
+- User identity and privilege level
+- Evidence collected (logs)
+- Post-incident lessons learned
 
