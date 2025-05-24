@@ -112,6 +112,7 @@ DeviceProcessEvents
 
 ---
 
+
 ### 3. Searched the `DeviceNetworkEvents` Table for Wire Network Connections
 
 Searched and there is an indication that the employee "Doreen" on the "burwell-new-vm" device successfully established a connection, ran Wireshark, and scanned the network. A connection was established on TCP remote port 443, HTTP port 80, and DNS UDP port 53. 
@@ -132,30 +133,35 @@ DeviceNetworkEvents
 
 ---
 
-### 4. Searched the 
+### 4. Searched for additonal bad actors 
 
-Searched for any indication that user "employee" actually opened the TOR browser. There was evidence that they did open it at `2024-11-08T22:17:21.6357935Z`. There were several other instances of `firefox.exe` (TOR) as well as `tor.exe` spawned afterwards.
+Determine that the unauthorized installation of Wireshark was download and launch on other corporate VM devices such as "vm-final-lab-kr' on May 21, 2025 and "jd-win10" on May 19th and again on May 20, 2025.  
+
 **Query used to locate events:**
 
 ```kql
-DeviceNetworkEvents  
-| where DeviceName == "threat-hunt-lab"  
-| where InitiatingProcessAccountName != "system"  
-| where InitiatingProcessFileName in ("tor.exe", "firefox.exe")  
-| where RemotePort in ("9001", "9030", "9040", "9050", "9051", "9150", "80", "443")  
-| project Timestamp, DeviceName, InitiatingProcessAccountName, ActionType, RemoteIP, RemotePort, RemoteUrl, InitiatingProcessFileName, InitiatingProcessFolderPath  
-| order by Timestamp desc
+
+DeviceProcessEvents
+| where FileName in~ ("wireshark.exe", "tshark.exe")
+| extend Parent = InitiatingProcessFileName
+| where Parent in~ ("powershell.exe", "cmd.exe", "explorer.exe", "chrome.exe", "firefox.exe")
+| project Timestamp, DeviceName, FileName, FolderPath, Parent, InitiatingProcessCommandLine
+| order by Timestamp desc  
+
 ```
-<img width="1212" alt="image" src="https://github.com/user-attachments/assets/87a02b5b-7d12-4f53-9255-f5e750d0e3cb">
+
+![image](https://github.com/user-attachments/assets/3554d825-9e55-4355-95ff-9e35cd9e9917)
+
+
 
 ---
 
 ## Chronological Event Timeline 
 
-### 1. File Download - TOR Installer
+### 1. File Download - Wireshark
 
-- **Timestamp:** `2024-11-08T22:14:48.6065231Z`
-- **Event:** The user "employee" downloaded a file named `tor-browser-windows-x86_64-portable-14.0.1.exe` to the Downloads folder.
+- **Timestamp:** `2025-05-21T21:11:07.6958531Z`
+- **Event:** The user "Doreen" downloaded a file named `tor-browser-windows-x86_64-portable-14.0.1.exe` to the Downloads folder.
 - **Action:** File download detected.
 - **File Path:** `C:\Users\employee\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe`
 
