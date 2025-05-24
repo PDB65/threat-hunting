@@ -1,4 +1,4 @@
-# Threat Event: Unauthorized Install and Usage of Wireshark
+# Threat Event: Unauthorized Installation and Usage of Wireshark
 
 ### Incident: 
 An internal or external bad actor installed Wireshark on a corporate VM with the intention of capturing internal network traffic, potentially to extract sensitive data or bypass network monitoring tools.
