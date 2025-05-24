@@ -139,6 +139,18 @@ DeviceNetworkEvents
 ```
 ![image](https://github.com/user-attachments/assets/b0472ad6-ac81-421d-8eed-424b2a4fd874)
 
+### Additional KQL query in the `DeviceNetworkEvents` Table to correlate PowerShell events and or suspicious Remote URL.
+
+```kql
+
+DeviceNetworkEvents
+| where DeviceName == "burwell-new-vm" 
+| where Timestamp >= datetime(2025-05-21T20:22:13.7670562Z)
+| where InitiatingProcessFileName in~ ("wireshark.exe", "tshark.exe", "powershell.exe")
+| project Timestamp, DeviceName, RemoteUrl, InitiatingProcessFileName, RemotePort, Protocol
+
+```
+![image](https://github.com/user-attachments/assets/dd4e71af-be80-4a66-b579-11414b5b56f8)
 
 
 ---
