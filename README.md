@@ -4,7 +4,8 @@
 
 
 # Threat Hunt Report: Unauthorized Installation and Usage of Wireshark
-- [Scenario Creation](https://github.com/joshmadakor0/threat-hunting-scenario-tor/blob/main/threat-hunting-scenario-tor-event-creation.md)
+- [Scenario Creation](https://github.com/PDB65/threat-hunting/blob/main/threat-hunting-scenario-Wireshark-event-creation.md)
+
 
 ## Platforms and Languages Leveraged
 - Windows 10 Virtual Machines (Microsoft Azure)
