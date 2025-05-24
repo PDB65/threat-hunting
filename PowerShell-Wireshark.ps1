@@ -1,3 +1,6 @@
+# This PowerShell sripts install the Wireshark in slient mode without any extra componets. Move the Wireshark file from the download, folder to the Temp folder, and run the PowerShell script. 
+
+
 # Define the path to the Wireshark installer
 $installerPath = "C:\Temp\Wireshark-4.4.6-x64.exe"
 
