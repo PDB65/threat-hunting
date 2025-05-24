@@ -73,6 +73,13 @@ DeviceFileEvents
 
 **Second query used to locate events:**
 
+The Wireshard software was installed, the file was created on the VM, deleted, and then reinstalled. 
+
+![image](https://github.com/user-attachments/assets/7a11b20f-5136-40ca-a2da-894783b9dfe5)
+
+---
+**Third query used to locate events:**
+
 After further investigation, it was discovered the user “Doreen” installed Wireshark additional components (npcap) for Wireshark on 5/21/2025.
 
 ```kql
