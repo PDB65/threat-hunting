@@ -135,7 +135,7 @@ DeviceNetworkEvents
 
 ### 4. Searched for additonal bad actors 
 
-Determine that the unauthorized installation of Wireshark was download and launch on other corporate VM devices such as "vm-final-lab-kr' on May 21, 2025 and "jd-win10" on May 19th and again on May 20, 2025.  
+Determine that the unauthorized installation of Wireshark was download by other bad actors on the corporate devices such as "vm-final-lab-kr' on May 21, 2025 and "jd-win10" on May 19th and again on May 20, 2025.  
 
 **Query used to locate events:**
 
@@ -152,8 +152,6 @@ DeviceProcessEvents
 
 ![image](https://github.com/user-attachments/assets/3554d825-9e55-4355-95ff-9e35cd9e9917)
 
-
-
 ---
 
 ## Chronological Event Timeline 
@@ -161,17 +159,19 @@ DeviceProcessEvents
 ### 1. File Download - Wireshark
 
 - **Timestamp:** `2025-05-21T21:11:07.6958531Z`
-- **Event:** The user "Doreen" downloaded a file named `tor-browser-windows-x86_64-portable-14.0.1.exe` to the Downloads folder.
+- **Event:** The user "Doreen" downloaded a file named `Wireshark-4.4.6-x64.exe` to the Downloads folder.
 - **Action:** File download detected.
-- **File Path:** `C:\Users\employee\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe`
+- **File Path:** `C:\Users\Doreen\Downloads\Wireshark-4.4.6-x64.exe`
 
 ### 2. Process Execution - TOR Browser Installation
 
-- **Timestamp:** `2024-11-08T22:16:47.4484567Z`
-- **Event:** The user "employee" executed the file `tor-browser-windows-x86_64-portable-14.0.1.exe` in silent mode, initiating a background installation of the TOR Browser.
-- **Action:** Process creation detected.
-- **Command:** `tor-browser-windows-x86_64-portable-14.0.1.exe /S`
-- **File Path:** `C:\Users\employee\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe`
+- **Timestamp:** `2025-05-21T21:11:07.6958531Z`
+- **Event:** The user "Doreen" executed the file `Wireshark-4.4.6-x64.exe`,
+- **Copy the file to the installerPath** = “C:\Temp\Wireshark-4.4.6-x64.exe"
+-  **installation directory $installDir** = "C:\Program Files\Wireshark"
+-  Use PowerShell silent mode to initiating a background installation of Wireshark.
+- **Silent Installer Command:** `Start-Process -FilePath $installerPath -ArgumentList $arguments -Wait -PassThru`
+`
 
 ### 3. Process Execution - TOR Browser Launch
 
