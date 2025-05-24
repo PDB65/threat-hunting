@@ -1,9 +1,9 @@
-   <img width="800" src="https://github.com/user-attachments/assets/623483cc-034e-4982-9c39-401fb76680ae" alt="Wireshark logo"/>
+  # Threat Hunt Report: An Unauthorized Installation and Usage
 
 
+   ![image](https://github.com/user-attachments/assets/5ba2f85c-e3e7-4d60-9313-665cd7daed03)
 
 
-# Threat Hunt Report: Unauthorized Installation and Usage of Wireshark
 - [Scenario Creation](https://github.com/PDB65/threat-hunting/blob/main/threat-hunting-scenario-Wireshark-event-creation.md)
 
 
