@@ -258,7 +258,7 @@ Confirmed the user "Doreen" on the endpoint "burwell-new-vm" device initiated an
 - Alert on packet sniffing tool executions
 
 ---
-## Documentation & Reporting:
+## 📄 Documentation & Reporting:
 
 - Record timeline of events
 - User identity and privilege level
