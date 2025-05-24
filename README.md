@@ -216,18 +216,12 @@ DeviceProcessEvents
 
 ### 5. Additional Network Connections - Wireshark
 
-- **Timestamps:**
-  - `Connected to `194.164.169.85` on port `443`.
-  - `2024-11-08T22:18:16Z` - Local connection to `127.0.0.1` on port `9150`.
-- **Event:** Additional TOR network connections were established, indicating ongoing activity by user "employee" through the TOR browser.
+- **Timestamps:** `2025-05-21T20:49:51.9749746Z` and `2025-05-21T21:04:21.3290732Z`
+  - `Connected to `as.dl.wireshark.org` on port `443`.
+  - `connection to `c.pki.goog` on port `80`.
+- **Event:** Additional network connections to Wireshark sites were established, indicating ongoing activity by user "Doreen".
 - **Action:** Multiple successful connections detected.
 
-### 6. File Creation - TOR Shopping List - 
-
-- **Timestamp:** `2024-11-08T22:27:19.7259964Z`
-- **Event:** The user "employee" created a file named `tor-shopping-list.txt` on the desktop, potentially indicating a list or notes related to their TOR browser activities.
-- **Action:** File creation detected.
-- **File Path:** `C:\Users\employee\Desktop\tor-shopping-list.txt`
 
 ---
 
