@@ -13,7 +13,7 @@ Policy: For employees of the organization, there is a policy against installing 
 ## The actions of the internal or external threat:
 1. Download Wireshark from the website: https://www.wireshar.org 
 2. Located the file: ```Wireshark-4.4.6-x64.exe```
-3. Copy the file to the Temp folder: “C:\Temp\Wireshark-4.4.6-x64.exe"
+3. Copy the file to the Temp folder: `“C:\Temp\Wireshark-4.4.6-x64.exe"`
 4. Delete the file in the download folder to give the impression that the file was deleted and not used.
 5. Launch PowerShell with admin credentials and run Wireshark in silent mode. To go undetected, the script will not add an icon on the Desktop and install additional components. Wait.
 6. A few minutes later, install the additional components, such as `npcap`, and during the this installation, select the option to not install an icon on the Desktop. 
