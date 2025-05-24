@@ -17,6 +17,7 @@
 
 Management suspects that an insider or compromised user installed Wireshark to inspect network traffic from within a VM, possibly for reconnaissance or exfiltration. Also, management suspects that other bad actors could have installed Wireshark.
 The goal is to detect any Wireshark usage and analyze related security incidents to mitigate potential risks. 
+Note: The organization has a policy against installing packet capture tools.
 
 ### High-Level Wireshark-Related IoC Discovery Plan
 
