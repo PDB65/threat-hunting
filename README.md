@@ -76,9 +76,15 @@ DeviceFileEvents
 
 **Second KQL query used to locate `DeviceFileEvents`:**
 
-The Wireshard software was installed, the file was created on the VM, deleted, and then reinstalled. 
+The Wireshark software was installed, the file was created on the VM, deleted, and then reinstalled from the Temp foler using PowerShell. 
 
 ![image](https://github.com/user-attachments/assets/7a11b20f-5136-40ca-a2da-894783b9dfe5)
+
+---
+
+**Another KQL query used to locate `DeviceFileEvents`:**
+![image](https://github.com/user-attachments/assets/a75248f3-badb-48b6-b9fc-65f624d55bd4)
+
 
 ---
 **Third KQL query used to locate `DeviceFileEvents`:**
