@@ -20,7 +20,7 @@ Management suspects that an insider or compromised user installed Wireshark to i
 
 - **Check `DeviceFileEvents`** for any "Wireshark.exe" file events.
 - **Check `DeviceProcessEvents`** for any signs of installation or usage.
-- **Check `DeviceNetworkEvents`** for any signs of installation or usage.
+- **Check `DeviceNetworkEvents`** for any signs of outgoing connections using known Wireshark ports.
 ---
 
 ## Investigation Steps:
@@ -135,7 +135,8 @@ DeviceNetworkEvents
 
 ### 4. Searched for additonal bad actors 
 
-Determine that the unauthorized installation of Wireshark was download by other bad actors on the corporate devices such as "vm-final-lab-kr' on May 21, 2025 and "jd-win10" on May 19th and again on May 20, 2025.  
+Determine that the unauthorized installation of Wireshark was download by other bad actors. 
+Wireshark was installed on other corporate devices such as "vm-final-lab-kr' on May 21, 2025 and "jd-win10" on May 19th and again on May 20, 2025.  
 
 **Query used to locate events:**
 
@@ -180,7 +181,7 @@ DeviceProcessEvents
 - **Action:** Process creation of Wireshark executables detected.
 - **File Path:** `C:\Users\Dooreen\Desktop\Wireshark-4.4.6-x64.ex`
 
-### 4. Network Connection - TOR Network
+### 4. Network Connection - TOR Network - TO DO
 
 - **Timestamp:** `2024-11-08T22:18:01.1246358Z`
 - **Event:** A network connection to IP `176.198.159.33` on port `9001` by user "employee" was established using `tor.exe`, confirming TOR browser network activity.
@@ -188,7 +189,7 @@ DeviceProcessEvents
 - **Process:** `tor.exe`
 - **File Path:** `c:\users\employee\desktop\tor browser\browser\torbrowser\tor\tor.exe`
 
-### 5. Additional Network Connections - TOR Browser Activity
+### 5. Additional Network Connections - TOR Browser Activity - TO DO
 
 - **Timestamps:**
   - `2024-11-08T22:18:08Z` - Connected to `194.164.169.85` on port `443`.
@@ -207,12 +208,29 @@ DeviceProcessEvents
 
 ## Summary
 
-The user "employee" on the "threat-hunt-lab" device initiated and completed the installation of the TOR browser. They proceeded to launch the browser, establish connections within the TOR network, and created various files related to TOR on their desktop, including a file named `tor-shopping-list.txt`. This sequence of activities indicates that the user actively installed, configured, and used the TOR browser, likely for anonymous browsing purposes, with possible documentation in the form of the "shopping list" file.
+Confirmed the user "Doreen" on the endpoint "burwell-new-vm" device initiated and completed the installation of Wireshark. The bad actor scanned the network, establish connections using Wireshark. This sequence of activities indicates that the user actively installed, configured, and used Wireshark. Also, furhter investigation determined other employees downloaded and installed Wireshark prior to the user "Doreen." 
 
 ---
 
-## Response Taken
+## Response Action Taken
 
-TOR usage was confirmed on the endpoint `threat-hunt-lab` by the user `employee`. The device was isolated, and the user's direct manager was notified.
+The device was isolated.
+The software was blocked by EDR policy.
+Notified the user's manager
+Determine if Security Team requires credentials to be blocked pending further investigations.
 
 ---
+## Preventive & Detective Controls:
+
+VM baseline software inventory monitoring
+Restrict administrative privileges on VMs
+Alert on packet sniffing tool executions
+
+---
+## Documentation & Reporting:
+
+Record timeline of events
+User identity and privilege level
+Evidence collected (logs)
+Post-incident lessons learned
+
