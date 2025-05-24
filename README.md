@@ -56,21 +56,22 @@ The goal is to detect any Wireshark usage and analyze related security incidents
 
 ### 1. Searched the `DeviceFileEvents` Table
 
-To confirm installation, searched for any files that had the string "wireshark.exe" in it. It determined an employee by name of: "Doreen" downloaded Wireshark. The user initially installed Wireshark with the option of not installing an icon on the Desktop and no extra components. This event began on `2025-05-21T20:37:08.8805099Z` where the user actually installed Wireshark, deleted it, and then reinstalled the software.
+To confirm installation, searched for any files that had the string "wireshark.exe" in it. It determined an employee by name of: "Doreen" downloaded Wireshark. The user initially installed Wireshark with the option of not installing an icon on the Desktop and no extra components. This event began on `2025-05-21T20:29:00.1204569Z` where the user actually installed Wireshark, deleted it, and then reinstalled the software.
 
 **Query used to locate events:**
 
 ```kql
+//Wireshark install, delete, and reinstalled again.
 DeviceFileEvents  
 | where DeviceName == "burwell-new-vm"  
-| where FileName contains "Wireshark.exe"
-| where Timestamp >= datetime(2025-05-21T21:11:07.6958531Z)
-| order by Timestamp desc  
+| where FileName contains "Wireshark-4.4.6-x64.exe"
+| where Timestamp >= datetime(2025-05-21T20:29:00.1204569Z)
+| order by Timestamp asc   
 | project Timestamp, DeviceName, ActionType, FileName, FolderPath, SHA256, Account = InitiatingProcessAccountName
 
 ```
+![image](https://github.com/user-attachments/assets/15fc77fe-0721-416e-8da5-6a83247e1ba8)
 
-![image](https://github.com/user-attachments/assets/a1b8d39e-81fb-458a-8aa5-c728a10dd892)
 
 ---
 
@@ -170,14 +171,15 @@ DeviceProcessEvents
 
 ### 1. File Download - Wireshark
 
-- **Timestamp:** `2025-05-21T21:11:07.6958531Z`
+- **Timestamp:** `2025-05-21T20:29:00.1204569ZZ`
 - **Event:** The user "Doreen" downloaded a file named `Wireshark-4.4.6-x64.exe` to the Downloads folder.
 - **Action:** File download detected, deleted and reinstalled.
 - **File Path:** `C:\Users\Doreen\Downloads\Wireshark-4.4.6-x64.exe`
+- **New File Path:** C:\Temp\Wireshark-4.4.6-x64.exe
 
 ### 2. Process Execution - Wireshark Installation
 
-- **Timestamp:** `2025-05-21T21:11:10.6958531Z` - Time to Check
+- **Timestamp:** `2025-05-21T21:07:21.8015708Z` 
 - **Event:** The user "Doreen" executed the file `Wireshark-4.4.6-x64.exe`,
 - **Copy the file to the installerPath** = “C:\Temp\Wireshark-4.4.6-x64.exe"
 -  **installation directory $installDir** = "C:\Program Files\Wireshark"
@@ -187,23 +189,23 @@ DeviceProcessEvents
 
 ### 3. Process Execution - Wireshark Launch
 
-- **Timestamp:** `2025-05-21T21:11:10.6958531` - Time to Check
+- **Timestamp:** `2025-05-21T21:04:16.0173232Z`
 - **Event:** User "Doreen" launched Wireshark and installed additional components such as `npcap`. After installing the `npcap` components, the user chose to created a Wireshark shortcut on the Desktop. 
 - **Action:** Process creation of Wireshark executables detected.
-- **File Path:** `C:\Users\Dooreen\Desktop\Wireshark-4.4.6-x64.ex`
+- **File Path:** `C:\Users\Dooreen\Desktop\Wireshark-4.4.6-x64.exe`
 
-### 4. Network Connection - TOR Network - TO DO
+### 4. Network Connection
 
-- **Timestamp:** `2024-11-08T22:18:01.1246358Z`
-- **Event:** A network connection to IP `176.198.159.33` on port `9001` by user "employee" was established using `tor.exe`, confirming TOR browser network activity.
+- **Timestamp:** `2025-05-21T21:04:16.1398035Z`
+- **Event:** A network connection using device "burwell-new-vm" acknowledge and established using `Wireshark.exe`.
 - **Action:** Connection success.
-- **Process:** `tor.exe`
-- **File Path:** `c:\users\employee\desktop\tor browser\browser\torbrowser\tor\tor.exe`
+- **Process:** `Wireshark.exe`
+- **File Path:** `C:\Users\Dooreen\Desktop\Wireshark-4.4.6-x64.exe`
 
-### 5. Additional Network Connections - TOR Browser Activity - Network scanned
+### 5. Additional Network Connections - Wireshark
 
 - **Timestamps:**
-  - `2024-11-08T22:18:08Z` - Connected to `194.164.169.85` on port `443`.
+  - `Connected to `194.164.169.85` on port `443`.
   - `2024-11-08T22:18:16Z` - Local connection to `127.0.0.1` on port `9150`.
 - **Event:** Additional TOR network connections were established, indicating ongoing activity by user "employee" through the TOR browser.
 - **Action:** Multiple successful connections detected.
