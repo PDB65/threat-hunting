@@ -38,7 +38,7 @@ Policy: For employees of the organization, there is a policy against installing 
 | **Parameter**       | **Description**                                                              |
 |---------------------|------------------------------------------------------------------------------|
 | **Name**| DeviceProcessEvents|
-| **Info**|https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicenetworkevents-table|
+| **Info**|https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-deviceprocessevents-table|
 | **Purpose**| Detect the silent installation of Wireshark as well as active use of Wireshark or its command-line utilities (tshark, dumpcap). Also, detect if other users may have downloaded and launched Wireshark manually.|
 
 ---
