@@ -18,7 +18,8 @@ Management suspects that an insider or compromised user installed Wireshark to i
 
 ### High-Level Wireshark-Related IoC Discovery Plan
 
-- **Check `DeviceProcessEvents`** for any signs of installation or usage.
+- **Check `DeviceFileEvents`** for any "Wireshark.exe" file events.
+- - **Check `DeviceFileEvents`** for any signs of installation or usage.
 ---
 
 ## Investigation Steps:
@@ -43,38 +44,32 @@ Management suspects that an insider or compromised user installed Wireshark to i
 
 ## 4.	Privilege Escalation Check
 
-- Was Wireshark installed by other bad actors? Yes
+- Was Wireshark installed by other bad actors? 
 
-- Did the user run as an administrator? Yes
+- Did the user run as an administrator? 
 
 ---
 
 
+### 1. Searched the `DeviceFileEvents` Table
 
-
-
-
-
-
-
-
-
-### 1. Searched the `DeviceProcessEvents` Table
-
-Searched for any file that had the string "tor" in it and discovered what looks like the user "employee" downloaded a TOR installer, did something that resulted in many TOR-related files being copied to the desktop, and the creation of a file called `tor-shopping-list.txt` on the desktop at `2024-11-08T22:27:19.7259964Z`. These events began at `2024-11-08T22:14:48.6065231Z`.
+Searched for any file that had the string "wireshark.exe", "tshark.exe" in it and discovered what looks like the an employee with the name: "Doreen" downloaded Wireshark. The employee installed Wireshark to not install an icon on the Desktop and no extra components. This event began on `2025-05-21T21:11:07.6958531Z`.
 
 **Query used to locate events:**
 
 ```kql
 DeviceFileEvents  
-| where DeviceName == "threat-hunt-lab"  
-| where InitiatingProcessAccountName == "employee"  
-| where FileName contains "tor"  
-| where Timestamp >= datetime(2024-11-08T22:14:48.6065231Z)  
+| where DeviceName == "burwell-new-vm"  
+| where FileName contains "Wireshark.exe"
+| where Timestamp >= datetime(2025-05-21T21:11:07.6958531Z)
 | order by Timestamp desc  
 | project Timestamp, DeviceName, ActionType, FileName, FolderPath, SHA256, Account = InitiatingProcessAccountName
+
+
 ```
-<img width="1212" alt="image" src="https://github.com/user-attachments/assets/71402e84-8767-44f8-908c-1805be31122d">
+
+![image](https://github.com/user-attachments/assets/a1b8d39e-81fb-458a-8aa5-c728a10dd892)
+
 
 ---
 
@@ -108,6 +103,9 @@ DeviceProcessEvents
 | project Timestamp, DeviceName, AccountName, ActionType, FileName, FolderPath, SHA256, ProcessCommandLine  
 | order by Timestamp desc
 ```
+
+
+
 <img width="1212" alt="image" src="https://github.com/user-attachments/assets/b13707ae-8c2d-4081-a381-2b521d3a0d8f">
 
 ---
