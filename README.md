@@ -56,7 +56,7 @@ The goal is to detect any Wireshark usage and analyze related security incidents
 
 ### 1. Searched the `DeviceFileEvents` Table
 
-To confirm installation, searched for any files that had the string "wireshark.exe", "tshark.exe" in it. It determined an employee by name of: "Doreen" downloaded Wireshark. The user initially installed Wireshark with the option of not installing an icon on the Desktop and no extra components. This event began on `2025-05-21T21:11:07.6958531Z`.
+To confirm installation, searched for any files that had the string "wireshark.exe" in it. It determined an employee by name of: "Doreen" downloaded Wireshark. The user initially installed Wireshark with the option of not installing an icon on the Desktop and no extra components. This event began on `2025-05-21T20:37:08.8805099Z` where the user actually installed Wireshark, deleted it, and then reinstalled the software.
 
 **Query used to locate events:**
 
