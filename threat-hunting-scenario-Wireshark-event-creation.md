@@ -1,8 +1,10 @@
 # Threat Event: Unauthorized Install and Usage of Wireshark
 
-Incident: An internal or external bad actor installed Wireshark on a corporate VM with the intention of capturing internal network traffic, potentially to extract sensitive data or bypass network monitoring tools.
+### Incident: 
+An internal or external bad actor installed Wireshark on a corporate VM with the intention of capturing internal network traffic, potentially to extract sensitive data or bypass network monitoring tools.
 
-Policy: For employees of the organization, there is a policy against installing packet capture tools and aims to identify and investigate potential insider threats or policy violations.
+### Policy: 
+For employees of the organization, there is a policy against installing packet capture tools and aims to identify and investigate potential insider threats or policy violations.
 
 ---
 
