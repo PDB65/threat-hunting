@@ -14,7 +14,8 @@
 
 ##  Scenario
 
-Management suspects that an insider or compromised user installed Wireshark to inspect network traffic from within a VM, possibly for reconnaissance or exfiltration. Also, management suspects that other bad actors could have installed Wireshark. The goal is to detect any Wireshark usage and analyze related security incidents to mitigate potential risks. 
+Management suspects that an insider or compromised user installed Wireshark to inspect network traffic from within a VM, possibly for reconnaissance or exfiltration. Also, management suspects that other bad actors could have installed Wireshark.
+The goal is to detect any Wireshark usage and analyze related security incidents to mitigate potential risks. 
 
 ### High-Level Wireshark-Related IoC Discovery Plan
 
@@ -53,7 +54,7 @@ Management suspects that an insider or compromised user installed Wireshark to i
 
 ### 1. Searched the `DeviceFileEvents` Table
 
-To confirm installation, searched for any file that had the string "wireshark.exe", "tshark.exe" in it and discovered what looks like the an employee with the name: "Doreen" downloaded Wireshark. The employee installed Wireshark to not install an icon on the Desktop and no extra components. This event began on `2025-05-21T21:11:07.6958531Z`.
+To confirm installation, searched for any files that had the string "wireshark.exe", "tshark.exe" in it. It determined an employee by name of: "Doreen" downloaded Wireshark. The user initially installed Wireshark with the option of not installing an icon on the Desktop and no extra components. This event began on `2025-05-21T21:11:07.6958531Z`.
 
 **Query used to locate events:**
 
@@ -217,7 +218,7 @@ Confirmed the user "Doreen" on the endpoint "burwell-new-vm" device initiated an
 - The device was isolated.
 - The software was blocked by EDR policy.
 - Notified the user's manager
-- Determine if Security Team requires credentials to be blocked pending further investigations.
+- Determine if the Security Team requires the credentials to be blocked pending further investigations.
 
 ---
 ## Preventive & Detective Controls:
