@@ -137,8 +137,10 @@ DeviceNetworkEvents
 
 ### 4. Searched for additonal bad actors 
 
-Determine that the unauthorized installation of Wireshark was download by other bad actors. 
-Wireshark was installed on other corporate devices such as "vm-final-lab-kr' on May 21, 2025 and "jd-win10" on May 19th and again on May 20, 2025.  
+Determine that the unauthorized installation of Wireshark was downloaded by other bad actors who may have admin rights. 
+Wireshark was installed on other corporate devices such as "vm-final-lab-kr' on May 21, 2025, and "jd-win10" on May 19th and again on May 20, 2025. 
+The owners of those devices are employees who have admin right to their devices too.
+
 
 **Query used to locate events:**
 
