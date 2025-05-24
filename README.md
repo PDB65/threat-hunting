@@ -20,6 +20,7 @@ Management suspects that an insider or compromised user installed Wireshark to i
 
 - **Check `DeviceFileEvents`** for any "Wireshark.exe" file events.
 - **Check `DeviceProcessEvents`** for any signs of installation or usage.
+- **Check `DeviceNetworkEvents`** for any signs of installation or usage.
 ---
 
 ## Investigation Steps:
@@ -52,7 +53,7 @@ Management suspects that an insider or compromised user installed Wireshark to i
 
 ### 1. Searched the `DeviceFileEvents` Table
 
-Searched for any file that had the string "wireshark.exe", "tshark.exe" in it and discovered what looks like the an employee with the name: "Doreen" downloaded Wireshark. The employee installed Wireshark to not install an icon on the Desktop and no extra components. This event began on `2025-05-21T21:11:07.6958531Z`.
+To confirm installation, searched for any file that had the string "wireshark.exe", "tshark.exe" in it and discovered what looks like the an employee with the name: "Doreen" downloaded Wireshark. The employee installed Wireshark to not install an icon on the Desktop and no extra components. This event began on `2025-05-21T21:11:07.6958531Z`.
 
 **Query used to locate events:**
 
@@ -70,14 +71,14 @@ DeviceFileEvents
 
 ---
 
-**Second query used to locate events:**
+**Second KQL query used to locate `DeviceFileEvents`:**
 
 The Wireshard software was installed, the file was created on the VM, deleted, and then reinstalled. 
 
 ![image](https://github.com/user-attachments/assets/7a11b20f-5136-40ca-a2da-894783b9dfe5)
 
 ---
-**Third query used to locate events:**
+**Third KQL query used to locate `DeviceFileEvents`:**
 
 After further investigation, it was discovered the user “Doreen” installed Wireshark additional components (npcap) for Wireshark on 5/21/2025.
 
@@ -94,7 +95,7 @@ DeviceFileEvents
 
 ### 2. Searched the `DeviceProcessEvents` Table
 
-Searched for any `ProcessCommandLine` that contained the string ""wireshark.exe", "tshark.exe", "dumpcap.exe"for the employee "Doreen" on the "burwell-new-vm" device and identify active use of Wireshark or its command-line utilities (tshark, dumpcap)
+To identify execution, searched for any `ProcessCommandLine` that contained the string ""wireshark.exe", "tshark.exe", "dumpcap.exe"for the employee "Doreen" on the "burwell-new-vm" device and identify active use of Wireshark or its command-line utilities (tshark, dumpcap)
 
 **Query used to locate event:**
 
@@ -109,38 +110,31 @@ DeviceProcessEvents
 
 ![image](https://github.com/user-attachments/assets/eeb55829-ed3d-4122-901c-067df5674d27)
 
-
-
-
-
-
-
 ---
 
-### 3. Searched the `DeviceProcessEvents` Table for TOR Browser Execution
+### 3. Searched the `DeviceNetworkEvents` Table for Wire Network Connections
 
-Searched for any indication that user "employee" actually opened the TOR browser. There was evidence that they did open it at `2024-11-08T22:17:21.6357935Z`. There were several other instances of `firefox.exe` (TOR) as well as `tor.exe` spawned afterwards.
+Searched and there is an indication that the employee "Doreen" on the "burwell-new-vm" device successfully established a connection, ran Wireshark, and scanned the network. A connection was established on TCP remote port 443, HTTP port 80, and DNS UDP port 53. 
 
 **Query used to locate events:**
 
 ```kql
-DeviceProcessEvents  
-| where DeviceName == "threat-hunt-lab"  
-| where FileName has_any ("tor.exe", "firefox.exe", "tor-browser.exe")  
-| project Timestamp, DeviceName, AccountName, ActionType, FileName, FolderPath, SHA256, ProcessCommandLine  
-| order by Timestamp desc
+
+DeviceNetworkEvents  
+| where DeviceName == "burwell-new-vm"   
+| where RemotePort in ("80", "53", "443") 
+| project Timestamp, DeviceName, ActionType, RemotePort
+
 ```
+![image](https://github.com/user-attachments/assets/b0472ad6-ac81-421d-8eed-424b2a4fd874)
 
 
-
-<img width="1212" alt="image" src="https://github.com/user-attachments/assets/b13707ae-8c2d-4081-a381-2b521d3a0d8f">
 
 ---
 
-### 4. Searched the `DeviceNetworkEvents` Table for TOR Network Connections
+### 4. Searched the 
 
-Searched for any indication the TOR browser was used to establish a connection using any of the known TOR ports. At `2024-11-08T22:18:01.1246358Z`, an employee on the "threat-hunt-lab" device successfully established a connection to the remote IP address `176.198.159.33` on port `9001`. The connection was initiated by the process `tor.exe`, located in the folder `c:\users\employee\desktop\tor browser\browser\torbrowser\tor\tor.exe`. There were a couple of other connections to sites over port `443`.
-
+Searched for any indication that user "employee" actually opened the TOR browser. There was evidence that they did open it at `2024-11-08T22:17:21.6357935Z`. There were several other instances of `firefox.exe` (TOR) as well as `tor.exe` spawned afterwards.
 **Query used to locate events:**
 
 ```kql
