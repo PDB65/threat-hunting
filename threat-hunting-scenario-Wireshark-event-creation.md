@@ -46,8 +46,6 @@ For employees of the organization, there is a policy against installing packet c
 ---
 
 
-
-
 ## Related Queries:
 ```kql
 
@@ -82,7 +80,7 @@ DeviceProcessEvents
 | order by Timestamp desc  
 
 
-//The user ran Wireshark and scanned the network. A connection was established on TCP remote port 443, HTTP port 80, and DNS UDP port 53. 
+//The user "Doreen" on device "burwell-new-vm" ran Wireshark and scanned the network. A connection was established on TCP remote port 443, HTTP port 80, and DNS UDP port 53. 
 DeviceNetworkEvents  
 | where DeviceName == "burwell-new-vm"   
 | where RemotePort in ("80", "53", "443") 
