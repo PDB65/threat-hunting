@@ -3,15 +3,19 @@
 
    ![image](https://github.com/user-attachments/assets/5ba2f85c-e3e7-4d60-9313-665cd7daed03)
 
+   
+
+### Click the link to view the scenario and related queries:
 
 - [Scenario Creation](https://github.com/PDB65/threat-hunting/blob/main/threat-hunting-scenario-Wireshark-event-creation.md)
 
-
+---
 ## Platforms and Languages Leveraged
 - Windows 10 Virtual Machines (Microsoft Azure)
 - EDR Platform: Microsoft Defender for Endpoint
 - Kusto Query Language (KQL)
 - Wireshark 
+
 
 ##  Scenario
 
