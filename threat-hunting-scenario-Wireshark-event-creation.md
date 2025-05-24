@@ -73,7 +73,7 @@ DeviceProcessEvents
 | where FileName in~ ("wireshark.exe", "tshark.exe", "dumpcap.exe")
 | project Timestamp, DeviceName, InitiatingProcessFileName, FileName, FolderPath, ProcessCommandLine, AccountName
 
-//It appears other bad actors downloaded Wireshark on the corporate VM too. 
+//It appears other bad actors downloaded Wireshark on the corporate device too. 
 DeviceProcessEvents
 | where FileName in~ ("wireshark.exe", "tshark.exe")
 | extend Parent = InitiatingProcessFileName
