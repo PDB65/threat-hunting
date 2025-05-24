@@ -15,39 +15,36 @@ Policy: For employees of the organization, there is a policy against installing 
 2. Located the file: ```Wireshark-4.4.6-x64.exe```
 3. Copy the file to the Temp folder: “C:\Temp\Wireshark-4.4.6-x64.exe"
 4. Delete the file in the download folder to give the impression that the file was deleted and not used.
-
-
-
-   - **WARNING: The links to onion sites change a lot and these have changed. However if you connect to Tor and browse around normal sites a bit, the necessary logs should still be created:**
-   - Current Dread Forum: ```dreadytofatroptsdj6io7l3xptbet6onoyno2yv7jicoxknyazubrad.onion```
-   - Dark Markets Forum: ```dreadytofatroptsdj6io7l3xptbet6onoyno2yv7jicoxknyazubrad.onion/d/DarkNetMarkets```
-   - Current Elysium Market: ```elysiumutkwscnmdohj23gkcyp3ebrf4iio3sngc5tvcgyfp4nqqmwad.top/login```
-
-5. Create a folder on your desktop called ```tor-shopping-list.txt``` and put a few fake (illicit) items in there
-6. Delete the file.
+5. Launch PowerShell with admin credentials and run Wireshark in silent mode. To go undetected, the script will not add an icon on the Desktop and install additional components. Wait.
+6. A few minutes later, install the additional components, such as `npcap`, and during the this installation, select the option to not install an icon on the Desktop. 
 
 ---
+## 🕵️‍♂️ Threat Hunting
 
 ## Tables Used to Detect IoCs:
+
 | **Parameter**       | **Description**                                                              |
 |---------------------|------------------------------------------------------------------------------|
 | **Name**| DeviceFileEvents|
 | **Info**|https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-deviceinfo-table|
-| **Purpose**| Used for detecting TOR download and installation, as well as the shopping list creation and deletion. |
-
-| **Parameter**       | **Description**                                                              |
-|---------------------|------------------------------------------------------------------------------|
-| **Name**| DeviceProcessEvents|
-| **Info**|https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-deviceinfo-table|
-| **Purpose**| Used to detect the silent installation of TOR as well as the TOR browser and service launching.|
+| **Purpose**| Detect Wireshark download, installation, as well as the deletion and reinstalling the software again. |
 
 | **Parameter**       | **Description**                                                              |
 |---------------------|------------------------------------------------------------------------------|
 | **Name**| DeviceNetworkEvents|
+| **Info**|https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-deviceNetworkevents-table|
+| **Purpose**| Detect network activity. The bad actor ran Wireshark and scanned the network. A connection was established on TCP remote port 443, HTTP port 80, and DNS UDP port 53.|
+
+| **Parameter**       | **Description**                                                              |
+|---------------------|------------------------------------------------------------------------------|
+| **Name**| DeviceProcessEvents|
 | **Info**|https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicenetworkevents-table|
-| **Purpose**| Used to detect TOR network activity, specifically tor.exe and firefox.exe making connections over ports to be used by TOR (9001, 9030, 9040, 9050, 9051, 9150).|
+| **Purpose**| Detect the silent installation of Wireshark as well as active use of Wireshark or its command-line utilities (tshark, dumpcap). Also, detect if other users may have downloaded and launched Wireshark manually.|
 
 ---
+
+
+
 
 ## Related Queries:
 ```kql
