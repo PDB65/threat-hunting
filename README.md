@@ -69,7 +69,9 @@ DeviceFileEvents
 | order by Timestamp asc   
 | project Timestamp, DeviceName, ActionType, FileName, FolderPath, SHA256, Account = InitiatingProcessAccountName
 
+
 ```
+
 ![image](https://github.com/user-attachments/assets/15fc77fe-0721-416e-8da5-6a83247e1ba8)
 
 
@@ -88,6 +90,7 @@ The Wireshark software was installed, the file was created on the VM, deleted, a
 
 
 ---
+
 **Third KQL query used to locate `DeviceFileEvents`:**
 
 After further investigation, it was discovered the user “Doreen” installed Wireshark additional components (npcap) for Wireshark on 5/21/2025.
@@ -99,6 +102,7 @@ DeviceFileEvents
 | order by Timestamp desc  
 
 ```
+
 ![image](https://github.com/user-attachments/assets/d6ab6ddd-3ae8-4d04-b8c9-6373120ffefd)
 
 ---
@@ -149,10 +153,10 @@ DeviceNetworkEvents
 | where InitiatingProcessFileName in~ ("wireshark.exe", "tshark.exe", "powershell.exe")
 | project Timestamp, DeviceName, RemoteUrl, InitiatingProcessFileName, RemotePort, Protocol
 
+
 ```
 
 ![image](https://github.com/user-attachments/assets/38532668-19be-4a4a-a4bd-4d4db5d45296)
-
 
 
 ---
@@ -174,6 +178,7 @@ DeviceProcessEvents
 | where Parent in~ ("powershell.exe", "cmd.exe", "explorer.exe", "chrome.exe", "firefox.exe")
 | project Timestamp, DeviceName, FileName, FolderPath, Parent, InitiatingProcessCommandLine
 | order by Timestamp desc  
+
 
 ```
 
@@ -212,18 +217,17 @@ DeviceProcessEvents
 
 - **Timestamp:** `2025-05-21T21:04:16.1398035Z`
 - **Event:** A network connection using device "burwell-new-vm" acknowledge and established using `Wireshark.exe`.
-- **Action:** Connection success.
+- **Action:** Connection success and a scan was performed.
 - **Process:** `Wireshark.exe`
 - **File Path:** `C:\Users\Dooreen\Desktop\Wireshark-4.4.6-x64.exe`
 
 ### 5. Additional Network Connections - Wireshark
 
 - **Timestamps:** `2025-05-21T20:49:51.9749746Z` and `2025-05-21T21:04:21.3290732Z`
-  - Connected to `as.dl.wireshark.org` on port `443`.
-  - Connection to `c.pki.goog` on port `80`.
-- **Event:** Additional network connections to Wireshark sites were established, indicating ongoing activity by user "Doreen".
+- **Connection:** Connected to `as.dl.wireshark.org` on port `443`.
+- **Connection:** Connection to `c.pki.goog` on port `80`.
+- **Event:** Additional network connections to Wireshark sites were established indicating ongoing activity by user "Doreen".
 - **Action:** Multiple successful connections detected.
-
 
 ---
 
