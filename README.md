@@ -167,7 +167,7 @@ DeviceProcessEvents
 
 ### 2. Process Execution - Wireshark Installation
 
-- **Timestamp:** `2025-05-21T21:11:10.6958531Z`
+- **Timestamp:** `2025-05-21T21:11:10.6958531Z` - Time to Check
 - **Event:** The user "Doreen" executed the file `Wireshark-4.4.6-x64.exe`,
 - **Copy the file to the installerPath** = “C:\Temp\Wireshark-4.4.6-x64.exe"
 -  **installation directory $installDir** = "C:\Program Files\Wireshark"
@@ -177,7 +177,7 @@ DeviceProcessEvents
 
 ### 3. Process Execution - Wireshark Launch
 
-- **Timestamp:** `2025-05-21T21:11:10.6958531`
+- **Timestamp:** `2025-05-21T21:11:10.6958531` - Time to Check
 - **Event:** User "Doreen" launched Wireshark and installed additional components such as `npcap`. After installing the `npcap` components, the user chose to created a Wireshark shortcut on the Desktop. 
 - **Action:** Process creation of Wireshark executables detected.
 - **File Path:** `C:\Users\Dooreen\Desktop\Wireshark-4.4.6-x64.ex`
@@ -190,7 +190,7 @@ DeviceProcessEvents
 - **Process:** `tor.exe`
 - **File Path:** `c:\users\employee\desktop\tor browser\browser\torbrowser\tor\tor.exe`
 
-### 5. Additional Network Connections - TOR Browser Activity - TO DO
+### 5. Additional Network Connections - TOR Browser Activity - Network scanned
 
 - **Timestamps:**
   - `2024-11-08T22:18:08Z` - Connected to `194.164.169.85` on port `443`.
@@ -198,7 +198,7 @@ DeviceProcessEvents
 - **Event:** Additional TOR network connections were established, indicating ongoing activity by user "employee" through the TOR browser.
 - **Action:** Multiple successful connections detected.
 
-### 6. File Creation - TOR Shopping List
+### 6. File Creation - TOR Shopping List - 
 
 - **Timestamp:** `2024-11-08T22:27:19.7259964Z`
 - **Event:** The user "employee" created a file named `tor-shopping-list.txt` on the desktop, potentially indicating a list or notes related to their TOR browser activities.
