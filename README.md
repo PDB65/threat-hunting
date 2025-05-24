@@ -19,7 +19,7 @@ Management suspects that an insider or compromised user installed Wireshark to i
 ### High-Level Wireshark-Related IoC Discovery Plan
 
 - **Check `DeviceFileEvents`** for any "Wireshark.exe" file events.
-- **Check `DeviceFileEvents`** for any signs of installation or usage.
+- **Check `DeviceProcessEvents`** for any signs of installation or usage.
 ---
 
 ## Investigation Steps:
@@ -49,7 +49,6 @@ Management suspects that an insider or compromised user installed Wireshark to i
 - Did the user run as an administrator? 
 
 ---
-
 
 ### 1. Searched the `DeviceFileEvents` Table
 
@@ -93,25 +92,28 @@ DeviceFileEvents
 
 ---
 
-
-
-
-
-
 ### 2. Searched the `DeviceProcessEvents` Table
 
-Searched for any `ProcessCommandLine` that contained the string "tor-browser-windows-x86_64-portable-14.0.1.exe". Based on the logs returned, at `2024-11-08T22:16:47.4484567Z`, an employee on the "threat-hunt-lab" device ran the file `tor-browser-windows-x86_64-portable-14.0.1.exe` from their Downloads folder, using a command that triggered a silent installation.
+Searched for any `ProcessCommandLine` that contained the string ""wireshark.exe", "tshark.exe", "dumpcap.exe"for the employee "Doreen" on the "burwell-new-vm" device and identify active use of Wireshark or its command-line utilities (tshark, dumpcap)
 
 **Query used to locate event:**
 
 ```kql
 
-DeviceProcessEvents  
-| where DeviceName == "threat-hunt-lab"  
-| where ProcessCommandLine contains "tor-browser-windows-x86_64-portable-14.0.1.exe"  
-| project Timestamp, DeviceName, AccountName, ActionType, FileName, FolderPath, SHA256, ProcessCommandLine
+DeviceProcessEvents
+| where DeviceName == "burwell-new-vm"  
+| where FileName in~ ("wireshark.exe", "tshark.exe", "dumpcap.exe")
+| project Timestamp, DeviceName, InitiatingProcessFileName, FileName, FolderPath, ProcessCommandLine, AccountName
+
 ```
-<img width="1212" alt="image" src="https://github.com/user-attachments/assets/b07ac4b4-9cb3-4834-8fac-9f5f29709d78">
+
+![image](https://github.com/user-attachments/assets/eeb55829-ed3d-4122-901c-067df5674d27)
+
+
+
+
+
+
 
 ---
 
