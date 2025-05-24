@@ -50,37 +50,45 @@ For employees of the organization, there is a policy against installing packet c
 
 ## Related Queries:
 ```kql
-// Installer name == tor-browser-windows-x86_64-portable-(version).exe
-// Detect the installer being downloaded
-DeviceFileEvents
-| where FileName startswith "tor"
 
-// TOR Browser being silently installed
-// Take note of two spaces before the /S (I don't know why)
+
+//Wireshark File Created, deleted, and then reinstalled again
+DeviceFileEvents   
+| where DeviceName == "burwell-new-vm"  
+| where FileName contains "" "Wireshark.exe"
+| where Timestamp >= datetime(2025-05-21T21:11:07.6958531Z)
+| order by Timestamp desc  
+| project Timestamp, DeviceName, ActionType, FileName, FolderPath, SHA256, Account = InitiatingProcessAccountName
+
+//The user “Doreen” installed Wireshark additional components `(npcap)`.
+DeviceFileEvents  
+| where DeviceName == "burwell-new-vm"  
+| where FileName contains "Npcap"
+| order by Timestamp desc  
+
+
+//Active use of Wireshark or its command-line utilities (tshark, dumpcap)
 DeviceProcessEvents
-| where ProcessCommandLine contains "tor-browser-windows-x86_64-portable-14.0.1.exe  /S"
-| project Timestamp, DeviceName, ActionType, FileName, ProcessCommandLine
+| where DeviceName == "burwell-new-vm"  
+| where FileName in~ ("wireshark.exe", "tshark.exe", "dumpcap.exe")
+| project Timestamp, DeviceName, InitiatingProcessFileName, FileName, FolderPath, ProcessCommandLine, AccountName
 
-// TOR Browser or service was successfully installed and is present on the disk
-DeviceFileEvents
-| where FileName has_any ("tor.exe", "firefox.exe")
-| project  Timestamp, DeviceName, RequestAccountName, ActionType, InitiatingProcessCommandLine
-
-// TOR Browser or service was launched
+//It appears other bad actors downloaded Wireshark on the corporate VM too. 
 DeviceProcessEvents
-| where ProcessCommandLine has_any("tor.exe","firefox.exe")
-| project  Timestamp, DeviceName, AccountName, ActionType, ProcessCommandLine
+| where FileName in~ ("wireshark.exe", "tshark.exe")
+| extend Parent = InitiatingProcessFileName
+| where Parent in~ ("powershell.exe", "cmd.exe", "explorer.exe", "chrome.exe", "firefox.exe")
+| project Timestamp, DeviceName, FileName, FolderPath, Parent, InitiatingProcessCommandLine
+| order by Timestamp desc  
 
-// TOR Browser or service is being used and is actively creating network connections
-DeviceNetworkEvents
-| where InitiatingProcessFileName in~ ("tor.exe", "firefox.exe")
-| where RemotePort in (9001, 9030, 9040, 9050, 9051, 9150)
-| project Timestamp, DeviceName, InitiatingProcessAccountName, InitiatingProcessFileName, RemoteIP, RemotePort, RemoteUrl
-| order by Timestamp desc
 
-// User shopping list was created and, changed, or deleted
-DeviceFileEvents
-| where FileName contains "shopping-list.txt"
+//The user ran Wireshark and scanned the network. A connection was established on TCP remote port 443, HTTP port 80, and DNS UDP port 53. 
+DeviceNetworkEvents  
+| where DeviceName == "burwell-new-vm"   
+| where RemotePort in ("80", "53", "443") 
+| project Timestamp, DeviceName, ActionType, RemotePort
+
+
 ```
 
 ---
