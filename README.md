@@ -15,7 +15,8 @@
 - EDR Platform: Microsoft Defender for Endpoint
 - Kusto Query Language (KQL)
 - Wireshark
-- PowerShell Script - https://github.com/PDB65/Burwell_P/blob/main/PowerShell%20Files/Wireshark
+- PowerShell
+- Script https://github.com/PDB65/Burwell_P/blob/main/PowerShell%20Files/Wireshark
   
 
 
