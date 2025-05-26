@@ -274,5 +274,7 @@ Confirmed the user "Doreen" on the endpoint "burwell-new-vm" device initiated an
 
 | **Phase:** Initial Access | - | **Technique:** Valid Accounts| - | **ID:** T1078| - |**Description:** User uses legitimate credentials to log into the device |
 
+| **Phase:** Execution | - | **Technique:** Command and Scripting Interpreter: PowerShell| - | **ID:** T1059.001 |**Description:** Silent install of Wireshark using PowerShell | 
+
 
 
