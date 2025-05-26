@@ -272,9 +272,9 @@ Confirmed the user "Doreen" on the endpoint "burwell-new-vm" device initiated an
 
  ### 🧩 MITRE ATT&CK Mapping: Wireshark Installed on Corporate device                                                            
 
-| **Phase:** Initial Access | - | **Technique:** Valid Accounts| - | **ID:** T1078| - |**Description:** User uses legitimate credentials to log into the device |
+**Phase:**  Initial Access - **Technique:** Valid Accounts - **ID:** T1078 - **Description:** User uses legitimate credentials to log into the device 
 
-| **Phase:** Execution | - | **Technique:** Command and Scripting Interpreter: PowerShell| - | **ID:** T1059.001 |**Description:** Silent install of Wireshark using PowerShell | 
+**Phase:**  Execution  -    **Technique:** Command and Scripting Interpreter: PowerShell -  **ID:** T1059.001 - **Description:** Silent install of Wireshark using PowerShell  
 
-
+**Phase:**  Discovery  -    **Technique:** System Information Discovery  -  **ID:** T1082 - **Description:** Understanding the network interfaces from inside the endpoint device 
 
