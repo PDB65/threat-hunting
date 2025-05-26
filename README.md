@@ -269,6 +269,6 @@ Confirmed the user "Doreen" on the endpoint "burwell-new-vm" device initiated an
 
 ---
 ## 🧩 MITRE ATT&CK Mapping: Wireshark Installed on Corporate device
-**Phase**	         | **Technique**	    |    **ID**	    |      **Description** |
+ |    |                    **Phase**         |   **Technique**	    |      **ID**	    |      **Description**      |   |
 
-|Initial Access    | Valid Accounts     | T1078        | User uses legitimate credentials to log into the device
+| Initial Access    | Valid Accounts     | T1078        | User uses legitimate credentials to log into the device
