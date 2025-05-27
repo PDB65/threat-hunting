@@ -16,7 +16,7 @@
 - Kusto Query Language (KQL)
 - Wireshark
 - PowerShell
-- Script https://github.com/PDB65/Burwell_P/blob/main/PowerShell%20Files/Wireshark
+- [WireShark Script](https://github.com/PDB65/Burwell_P/blob/main/PowerShell%20Files/Wireshark)
   
 
 
