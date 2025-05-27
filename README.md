@@ -36,25 +36,25 @@ The goal is to detect any Wireshark usage and analyze related security incidents
 
 ## Investigation Steps:
 
-## 1.	Confirm Installation Source
+### 1.	Confirm Installation Source
 
 - Determine if PowerShell, EXE, or portable version was used.
 
 - Check hash against known software repositories
 
-## 2.	Identify Process Creation Events
+### 2.	Identify Process Creation Events
 
 - Search for execution of Wireshark or dumpcap.
 
 - Review parent process tree (browser, installer, etc.).
 
-## 3.	Check Network Traffic
+### 3.	Check Network Traffic
 
 - Look for outbound connections during capture window.
 
 - DNS resolution of suspicious domains (file-sharing services).
 
-## 4.	Privilege Escalation Check
+### 4.	Privilege Escalation Check
 
 - Was Wireshark installed by other bad actors? 
 
